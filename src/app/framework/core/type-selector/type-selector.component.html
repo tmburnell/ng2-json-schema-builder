@@ -1,0 +1,18 @@
+<mat-icon *ngIf="!buttonlabel"
+          [matMenuTriggerFor]="menu"
+          class="clickable"
+          [matTooltip]="tooltip" matTooltipShowDelay="500"
+          color="primary">add</mat-icon>
+<button *ngIf="buttonlabel"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        [matTooltip]="tooltip" matTooltipShowDelay="500"
+        color="primary">{{buttonlabel}}</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onSelect('object')">object</button>
+  <button mat-menu-item (click)="onSelect('string')">string</button>
+  <button mat-menu-item (click)="onSelect('array')">array</button>
+  <button mat-menu-item (click)="onSelect('boolean')">boolean</button>
+  <button mat-menu-item (click)="onSelect('integer')">integer</button>
+  <button mat-menu-item (click)="onSelect('number')">number</button>
+</mat-menu>

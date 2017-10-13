@@ -1,0 +1,96 @@
+<div [ngClass]="{root: data.$root$, hover: hover}" (mouseenter)="hover=true" (mouseout)="hover=false">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <type-selector class="add-child" (typeSelected)="onCreateSchema($event)" tooltip="Add Child Schema"></type-selector>
+      <mat-icon *ngIf="hasProperties(data)"
+                [ngClass]="{'view-children': true, clickable: true, hidden: !viewChildren}"
+                (click)="viewChildren = !viewChildren"
+                matTooltip="hide/show Children Schema"
+                matTooltipShowDelay="500"
+                color="primary">
+        keyboard_arrow_down
+      </mat-icon>
+      <standard-input [(data)]="data" (changeType)="onChangeType($event)"></standard-input>
+      <button *ngIf="!data.$root$"
+              mat-button
+              (click)="viewDetails = !viewDetails"
+              matTooltip="Edit Schema details"
+              matTooltipShowDelay="500"
+              color="primary">
+        Edit Details
+      </button>
+      <mat-icon *ngIf="!data.$root$ && hasProperties(data)"
+                class="clickable"
+                (click)="onScopeSchema(data)"
+                matTooltip="View only this level and below"
+                matTooltipShowDelay="500"
+                color="primary">
+        zoom_in
+      </mat-icon>
+        <span *ngIf="data.properties">{{ '{' + data.properties.length + '}'}}</span>
+    </div>
+    <mat-icon *ngIf="!data.$root$"
+              (click)="onRemoveSchema({data: data})"
+              class="clickable"
+              matTooltip="Delete Schema"
+              matTooltipShowDelay="500"
+              color="warn">
+      close
+    </mat-icon>
+  </div>
+  <div *ngIf="!data.$root$" [hidden]="!viewDetails">
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-between" fxLayoutWrap class="details-inputs">
+      <div fxLayout="column">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="data.title" placeholder="title"/>
+      </div>
+      <div fxLayout="column">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="data.description" placeholder="description"/>
+      </div>
+      <!--<input [(ngModel)]="data.$ref" placeholder="$ref"/>-->
+      <div fxLayout="column">
+        <label>default</label>
+        <input type="text" [(ngModel)]="data.default" placeholder="default"/>
+      </div>
+      <div fxLayout="column">
+        <label>Enum</label>
+        <input type="text" [(ngModel)]="data.enum" placeholder="enum"/>
+      </div>
+      <div fxLayout="column">
+        <label>Additional Properties</label>
+        <input type="text" [(ngModel)]="data.additionalProperties" placeholder="additional properties"/>
+      </div>
+      <div fxLayout="column">
+        <label>Disallow additional</label>
+        <input type="text" [(ngModel)]="data.disallowAdditional" placeholder="disallow additional"/>
+      </div>
+      <div fxLayout="column">
+        <label>Min Properties</label>
+        <input type="number" [(ngModel)]="data.minProperties" placeholder="min Properties" min="0"/>
+      </div>
+      <div fxLayout="column">
+        <label>Max Properties</label>
+        <input type="number" [(ngModel)]="data.maxProperties" placeholder="max Properties" min="0"/>
+      </div>
+      <div fxLayout="column">
+        <label>Required</label>
+        <input type="checkbox" [(ngModel)]="data.required"/>
+      </div>
+    </div>
+  </div>
+  <div [hidden]="!viewChildren">
+    <mat-card *ngIf="hasProperties(data)">
+      <div *ngFor="let entity of data.properties; let i = index">
+        <!--<div>{{entity | json}}</div>-->
+        <schema-loader [(data)]="data.properties[i]"
+                       (createSchema)="onCreateSchema($event)"
+                       (changeType)="onChangeType($event)"
+                       (changeSubType)="onChangeSubType($event)"
+                       (removeSchema)="onRemoveSchema($event)"
+                       (scopeSchema)="onScopeSchema($event)">
+        </schema-loader>
+      </div>
+    </mat-card>
+  </div>
+</div>

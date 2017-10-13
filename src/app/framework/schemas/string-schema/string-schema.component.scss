@@ -1,0 +1,25 @@
+@import '../../../../vars.scss';
+
+:host-context {
+  > div {
+    padding: 0 0 2px 48px;
+    margin: 0 0 2px 0;
+  }
+}
+
+.hover {
+  background: $hover;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}

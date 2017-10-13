@@ -1,0 +1,21 @@
+@import './vars.scss';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary-palette: $mat-blue;
+$primary-default: 700;
+
+// Set the 500 color in the palette to match the default since md-checkbox uses 500 to fill in the background.
+$custom-palette: (
+500: map-get($primary-palette, $primary-default)
+);
+
+$datalake-app-primary: mat-palette(map_merge($primary-palette, $custom-palette), $primary-default);
+$datalake-app-accent:  mat-palette($mat-green, 600);
+$datalake-app-warn:    mat-palette($mat-red, 800);
+
+$datalake-app-theme: mat-light-theme($datalake-app-primary, $datalake-app-accent, $datalake-app-warn);
+
+@include angular-material-theme($datalake-app-theme);
+

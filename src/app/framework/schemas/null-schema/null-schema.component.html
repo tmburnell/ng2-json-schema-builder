@@ -1,0 +1,4 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <standard-input [(data)]="data" (changeType)="onChangeType($event)"></standard-input>
+  <mat-checkbox [(ngModel)]="data.required">Required</mat-checkbox>
+</div>

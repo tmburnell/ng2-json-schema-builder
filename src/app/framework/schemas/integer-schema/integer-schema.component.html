@@ -1,0 +1,63 @@
+<div [ngClass]="{hover: hover}" (mouseenter)="hover=true" (mouseout)="hover=false">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <standard-input [(data)]="data" (changeType)="onChangeType($event)"></standard-input>
+      <button mat-button
+              (click)="viewDetails = !viewDetails"
+              matTooltip="Edit Schema details"
+              matTooltipShowDelay="500"
+              color="primary">
+        Edit Details
+      </button>
+    </div>
+    <mat-icon (click)="onRemoveSchema({data: data})"
+              class="clickable"
+              matTooltip="Delete Schema"
+              matTooltipShowDelay="500"
+              color="warn">
+      close
+    </mat-icon>
+  </div>
+
+  <div *ngIf="!data.$root$" [hidden]="!viewDetails" class="no-flex">
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-between" fxLayoutWrap class="details-inputs">
+      <div fxLayout="column">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="data.title" placeholder="title"/>
+      </div>
+      <div fxLayout="column">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="data.description" placeholder="description"/>
+      </div>
+      <!--<input [(ngModel)]="data.$ref" placeholder="$ref"/>-->
+      <div fxLayout="column">
+        <label>default</label>
+        <input type="text" [(ngModel)]="data.default" placeholder="default"/>
+      </div>
+      <div fxLayout="column">
+        <label>Enum</label>
+        <input type="text" [(ngModel)]="data.enum" placeholder="enum"/>
+      </div>
+      <div fxLayout="column">
+        <label>Format</label>
+        <input type="text" [(ngModel)]="data.format" placeholder="format"/>
+      </div>
+      <div fxLayout="column">
+        <label>Pattern</label>
+        <input type="text" [(ngModel)]="data.pattern" placeholder="pattern"/>
+      </div>
+      <div fxLayout="column">
+        <label>Max Length</label>
+        <input type="text" [(ngModel)]="data.maxLength" placeholder="maxLength" min="0"/>
+      </div>
+      <div fxLayout="column">
+        <label>Min Length</label>
+        <input type="text" [(ngModel)]="data.minLength" placeholder="minLength" min="0"/>
+      </div>
+      <div fxLayout="column">
+        <label>Required</label>
+        <input type="checkbox" [(ngModel)]="data.required"/>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<input [(ngModel)]="data.key" placeholder="Key" [disabled]="data.$root$"/>
+<input [(ngModel)]="data.title" placeholder="Title"/>
+<type-selector *ngIf="!data.$root$"
+               [buttonlabel]="data.type"
+               tooltip="Change Schema type"
+               (typeSelected)="onChangeType($event)"></type-selector>
+

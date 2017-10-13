@@ -1,0 +1,53 @@
+@import '../../../../vars.scss';
+
+:host-context {
+  > div {
+    padding: 0 0 2px 48px;
+    margin: 0 0 2px 0;
+  }
+}
+.view-children {
+  -moz-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+
+  &.hidden {
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+  }
+}
+
+.hover {
+  background: $hover;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.mat-card {
+  padding: 0;
+  margin: 0;
+}
+
+.add-child {
+  position: absolute;
+  left: 0;
+}
+
+
+.view-children {
+  position: absolute;
+  left: 24px;
+}
