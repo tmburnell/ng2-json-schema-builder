@@ -1,0 +1,15 @@
+<div [ngClass]="{hover: hover}" (mouseenter)="hover=true" (mouseout)="hover=false">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <input type="text" [(ngModel)]="data.$ref" placeholder="$ref" />
+      <type-selector [buttonlabel]="data.type" tooltip="Change Schema type" (typeSelected)="onChangeType($event)"></type-selector>
+    </div>
+    <mat-icon (click)="onRemoveSchema({data: data})"
+              class="clickable"
+              matTooltip="Delete Schema"
+              matTooltipShowDelay="500"
+              color="warn">
+      close
+    </mat-icon>
+  </div>
+</div>

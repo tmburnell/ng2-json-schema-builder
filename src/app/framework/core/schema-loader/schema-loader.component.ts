@@ -1,9 +1,7 @@
 import {Component, AfterViewInit, ComponentFactoryResolver, Input, ViewChild} from '@angular/core';
 import {LoadSchemaDirective} from "./load-schema.directive";
-import {
-  ArraySchemaComponent, BooleanSchemaComponent, IntegerSchemaComponent,
-  NullSchemaComponent, NumberSchemaComponent, ObjectSchemaComponent, StringSchemaComponent
-} from "../../schemas";
+import {ArraySchemaComponent, BooleanSchemaComponent, IntegerSchemaComponent, NullSchemaComponent,
+        NumberSchemaComponent, ObjectSchemaComponent, StringSchemaComponent, RefSchemaComponent} from "../../schemas";
 import {BaseSchemaComponent} from "../base-schema";
 
 @Component({
@@ -22,8 +20,9 @@ export class SchemaLoaderComponent extends BaseSchemaComponent implements AfterV
     "null": NullSchemaComponent,
     "number": NumberSchemaComponent,
     "object": ObjectSchemaComponent,
-    "string": StringSchemaComponent
-  }
+    "string": StringSchemaComponent,
+    "$ref": RefSchemaComponent
+  };
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
     super();

@@ -131,6 +131,8 @@ export class BooleanSchema extends BaseSchema {
 }
 export class NullSchema extends BaseSchema {
 }
+export class RefSchema extends BaseSchema {
+}
 
 const SchemaLookup = {
   array: ArraySchema,
@@ -138,7 +140,8 @@ const SchemaLookup = {
   integer: IntegerSchema,
   number: NumberSchema,
   object: ObjectSchema,
-  string: StringSchema
+  string: StringSchema,
+  $ref: RefSchema
 };
 
 export class Schema {
@@ -266,6 +269,10 @@ export class Schema {
           schema.format = data.format;
         }
         break;
+      case '$ref' :
+        schema.type = undefined;
+        schema.$ref = data.$ref;
+        break;
     }
     return schema;
   }
@@ -299,15 +306,13 @@ export class Schema {
           subObj:SchemaType;
 
         for (prop in data.properties) {
-          if(data.properties[prop].type){
-            subObj = this.JsonString2Obj(data.properties[prop], {key: prop, parent_id: obj._id});
+          subObj = this.JsonString2Obj(data.properties[prop], {key: prop, parent_id: obj._id});
 
-            if(data.required && data.required.indexOf(prop) != -1) {
-              subObj.required = true;
-            }
-
-            obj.properties.push(subObj);
+          if(data.required && data.required.indexOf(prop) != -1) {
+            subObj.required = true;
           }
+
+          obj.properties.push(subObj);
         }
         break;
       case 'string':
@@ -341,6 +346,11 @@ export class Schema {
 
         obj = this.create(cfg);
 
+        break;
+      case undefined:
+        cfg.type = '$ref';
+        cfg.$ref = data.$ref;
+        obj = this.create(cfg);
         break;
       default:
         obj = this.create(cfg);

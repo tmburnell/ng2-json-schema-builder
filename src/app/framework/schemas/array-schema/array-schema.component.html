@@ -75,5 +75,7 @@
         </schema-loader>
       </div>
     </mat-card>
-  </div>
+    <mat-card *ngIf="isRefSchema(data)">
+      <ref-schema [(data)]="data.items"></ref-schema>
+    </mat-card>
 </div>

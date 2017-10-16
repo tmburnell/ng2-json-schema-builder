@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {BaseSchemaComponent} from "../../core/base-schema";
-import {ObjectSchema} from "../../model/";
+import {ObjectSchema, RefSchema} from "../../model/";
 
 @Component({
   selector: 'array-schema',
@@ -9,11 +9,17 @@ import {ObjectSchema} from "../../model/";
 })
 export class ArraySchemaComponent extends BaseSchemaComponent {
   hasItems(data): boolean {
-    if(data.items.constructor == ObjectSchema) {
+    if( this.isObjectSchema(data)) {
       return true;
     }
 
     return false;
+  }
+  isObjectSchema(data): boolean {
+    return data.items.constructor == ObjectSchema;
+  }
+  isRefSchema(data): boolean {
+    return data.items.constructor == RefSchema;
   }
 
   onCreateSchema($event) {

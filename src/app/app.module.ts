@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {Ng2JsonSchemaBuilderComponent} from './ng2-json-schema-builder/ng2-json-schema-builder.component';
 import {BaseSchemaComponent,LoadSchemaDirective,SchemaLoaderComponent,StandardInputComponent,TypeSelectorComponent} from './framework/core';
 import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullSchemaComponent,
-        NumberSchemaComponent,ObjectSchemaComponent,StringSchemaComponent} from './framework/schemas';
+        NumberSchemaComponent,ObjectSchemaComponent,StringSchemaComponent, RefSchemaComponent} from './framework/schemas';
 
 @NgModule({
   imports: [
@@ -43,7 +43,8 @@ import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullS
     StandardInputComponent,
     BaseSchemaComponent,
     SchemaLoaderComponent,
-    LoadSchemaDirective
+    LoadSchemaDirective,
+    RefSchemaComponent
   ],
   entryComponents: [
     ArraySchemaComponent,
@@ -52,7 +53,8 @@ import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullS
     NullSchemaComponent,
     NumberSchemaComponent,
     ObjectSchemaComponent,
-    StringSchemaComponent
+    StringSchemaComponent,
+    RefSchemaComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
