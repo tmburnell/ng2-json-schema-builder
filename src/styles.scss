@@ -1,5 +1,9 @@
 @import './vars.scss';
 
+@import "~codemirror/lib/codemirror.css";
+@import '~codemirror/addon/lint/lint.css';
+@import '~codemirror/addon/fold/foldgutter.css';
+
 @import '~@angular/material/theming';
 @include mat-core();
 
@@ -18,4 +22,8 @@ $datalake-app-warn:    mat-palette($mat-red, 800);
 $datalake-app-theme: mat-light-theme($datalake-app-primary, $datalake-app-accent, $datalake-app-warn);
 
 @include angular-material-theme($datalake-app-theme);
+
+body {
+  margin: 0;
+}
 

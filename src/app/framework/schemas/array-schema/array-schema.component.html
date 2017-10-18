@@ -76,6 +76,6 @@
       </div>
     </mat-card>
     <mat-card *ngIf="isRefSchema(data)">
-      <ref-schema [(data)]="data.items"></ref-schema>
+      <ref-schema [(data)]="data.items" [hideSubEdits]="true"></ref-schema>
     </mat-card>
 </div>

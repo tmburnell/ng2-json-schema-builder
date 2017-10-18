@@ -42,6 +42,7 @@ export class SchemaLoaderComponent extends BaseSchemaComponent implements AfterV
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<BaseSchemaComponent>componentRef.instance).data = this.data;
+    (<BaseSchemaComponent>componentRef.instance).hideSubEdits = this.hideSubEdits;
     (<BaseSchemaComponent>componentRef.instance).changeType.subscribe(($event) => this.onChangeType($event));
     (<BaseSchemaComponent>componentRef.instance).changeSubType.subscribe(($event) => this.onChangeSubType($event));
     (<BaseSchemaComponent>componentRef.instance).createSchema.subscribe(($event) => this.onCreateSchema($event));

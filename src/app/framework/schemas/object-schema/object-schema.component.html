@@ -80,8 +80,8 @@
     </div>
   </div>
   <div [hidden]="!viewChildren">
-    <mat-card *ngIf="hasProperties(data)">
-      <div *ngFor="let entity of data.properties; let i = index">
+    <div *ngIf="hasProperties(data)">
+      <mat-card *ngFor="let entity of data.properties; let i = index">
         <!--<div>{{entity | json}}</div>-->
         <schema-loader [(data)]="data.properties[i]"
                        (createSchema)="onCreateSchema($event)"
@@ -90,7 +90,7 @@
                        (removeSchema)="onRemoveSchema($event)"
                        (scopeSchema)="onScopeSchema($event)">
         </schema-loader>
-      </div>
-    </mat-card>
+      </mat-card>
+    </div>
   </div>
 </div>

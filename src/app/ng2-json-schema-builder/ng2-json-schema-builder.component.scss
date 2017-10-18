@@ -4,3 +4,47 @@
   cursor: pointer;
   color: $primary;
 }
+
+.mat-tab-group {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  /deep/ .mat-tab-body-wrapper {
+    height: 100%;
+
+    .CodeMirror.CodeMirror-wrap {
+      height: 100%;
+    }
+  }
+}
+
+div.definitions.root {
+  padding: 0 0 2px 48px;
+  margin: 0 0 2px 0;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.mat-card {
+  padding: 0;
+  margin: 0;
+}
+
+.add-child {
+  position: absolute;
+  left: 0;
+}
+
+.view-children {
+  position: absolute;
+  left: 24px;
+}
+

@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="definitions root">
+  <type-selector class="add-child" (typeSelected)="onCreateSchema($event)" tooltip="Add Definition"></type-selector>
+  <mat-icon *ngIf="data.definitions"
+            [ngClass]="{'view-children': true, clickable: true, hidden: !viewChildren}"
+            (click)="viewChildren = !viewChildren"
+            matTooltip="hide/show Children Schema"
+            matTooltipShowDelay="500"
+            color="primary">
+    keyboard_arrow_down
+  </mat-icon>
+  <input [(ngModel)]="data.key" placeholder="Key" [disabled]="true"/>
+  <input [(ngModel)]="data.title" placeholder="Title"/>
+  <span *ngIf="data.definitions">{{ '{' + data.definitions.length + '}'}}</span>
+</div>
+<!--<div *ngIf="data.definitions" class="definitions root">-->
+<div *ngIf="data.definitions">
+  <mat-card *ngFor="let definition of data.definitions; let i = index">
+    <schema-loader
+      [(data)]="data.definitions[i]"
+      (createSchema)="onCreateSchema($event)"
+      (changeType)="onChangeType($event)"
+      (changeSubType)="onChangeSubType($event)"
+      (removeSchema)="onRemoveSchema($event)"
+      (scopeSchema)="onScopeSchema($event)">
+    </schema-loader>
+  </mat-card>
+</div>

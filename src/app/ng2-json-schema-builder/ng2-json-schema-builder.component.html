@@ -1,4 +1,43 @@
 <mat-tab-group (selectChange)="onTabChange($event)">
+  <mat-tab label="Edit Definitions">
+    <div>
+      <span>Scope: </span>
+      <span *ngFor="let level of scope; let i = index">
+        <span *ngIf="i != 0">/</span>
+        <a (click)="onScopeChange({id: level.id})" color="primary" class="link">{{level.key}}</a>
+      </span>
+    </div>
+    <div *ngIf="data.$root$; else notRoot">
+      <base-definitions *ngIf="data.$root$"
+                        [(data)]="data"
+                        (createSchema)="onCreateDefinition($event)"
+                        (changeType)="onChangeType($event)"
+                        (changeSubType)="onChangeSubType($event)"
+                        (removeSchema)="onRemoveModel($event)"
+                        (scopeSchema)="onScopeChange($event)">
+
+      </base-definitions>
+    </div>
+    <ng-template #notRoot>
+      <div>
+        <object-schema *ngIf="data.type === 'object'"
+                       fxFlex [(data)]="data"
+                       (createSchema)="onCreateSchema($event)"
+                       (changeType)="onChangeType($event)"
+                       (changeSubType)="onChangeSubType($event)"
+                       (removeSchema)="onRemoveModel($event)"
+                       (scopeSchema)="onScopeChange($event)"></object-schema>
+
+        <array-schema *ngIf="data.type === 'array'"
+                      fxFlex [(data)]="data"
+                      (createSchema)="onCreateSchema($event)"
+                      (changeType)="onChangeType($event)"
+                      (changeSubType)="onChangeSubType($event)"
+                      (removeSchema)="onRemoveModel($event)"
+                      (scopeSchema)="onScopeChange($event)"></array-schema>
+      </div>
+    </ng-template>
+  </mat-tab>
   <mat-tab label="Edit Schema UI">
     <div>
       <span>Scope: </span>
@@ -26,7 +65,8 @@
     </div>
   </mat-tab>
   <mat-tab label="View Schema">
-    <!--<pre *ngIf="schemaString">{{schemaString}}</pre>-->
-    <textarea [(ngModel)]="schemaString"></textarea>
+    <codemirror *ngIf="schemaString" [(ngModel)]="schemaString" [config]="editorConfig"></codemirror>
+    <!--<textarea [(ngModel)]="schemaString"></textarea>-->
   </mat-tab>
 </mat-tab-group>
+

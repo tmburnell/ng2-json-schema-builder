@@ -3,9 +3,13 @@ let _id = 0;
 export type SchemaConfig = {
   key?: string;
   type?: string;
-  $root$?: boolean;
   parent_id?: string;
   subType?: string;
+
+  //root
+  $root$?: boolean;
+  $schema?: string;
+  definitions?: any;
 
   // base
   title?: string;
@@ -72,6 +76,7 @@ class BaseSchema {
   enum?: Array<any>;
   required?: boolean;
   $root$: boolean;
+  definitions: Array<SchemaType>;
 }
 
 export class ObjectSchema extends BaseSchema {
@@ -160,6 +165,30 @@ export class Schema {
 
   static obj2JsonString(data:SchemaConfig) {
     let schema: any = {};
+
+    if(data.$root$) {
+      schema.$schema = 'http://json-schema.org/draft-06/schema#';
+
+      if(data.definitions) {
+        schema.definitions = {
+          required: []
+        };
+
+        for (var i = 0; i < data.definitions.length; i++) {
+          let o = data.definitions[i];
+          if (o && o.type) {
+            var res = this.obj2JsonString(o);
+            schema.definitions[o.key] = res;
+            if (o.required) {
+              schema.required.push(o.key);
+            }
+          }
+        }
+        if (schema.definitions.required.length == 0) {
+          delete schema.definitions.required;
+        }
+      }
+    }
 
     schema.type = data.type;
 
@@ -293,7 +322,6 @@ export class Schema {
         }
       };
 
-
     switch (data.type) {
       case 'object':
         cfg.minProperties = data.minProperties;
@@ -356,6 +384,24 @@ export class Schema {
         obj = this.create(cfg);
         break;
     }
+
+    if(data.definitions) {
+      let def,
+        subObj:SchemaType;
+
+      obj.definitions = [];
+
+      for (def in data.definitions) {
+        subObj = this.JsonString2Obj(data.definitions[def], {key: def, parent_id: obj._id});
+
+        if(data.required && data.required.indexOf(def) != -1) {
+          subObj.required = true;
+        }
+
+        obj.definitions.push(subObj);
+      }
+    }
+
     return obj;
   }
 }

@@ -1,10 +1,14 @@
 <div [ngClass]="{hover: hover}" (mouseenter)="hover=true" (mouseout)="hover=false">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="center center">
+      <input *ngIf="!hideSubEdits" type="text" [(ngModel)]="data.key" placeholder="key" />
       <input type="text" [(ngModel)]="data.$ref" placeholder="$ref" />
-      <type-selector [buttonlabel]="data.type" tooltip="Change Schema type" (typeSelected)="onChangeType($event)"></type-selector>
+      <type-selector *ngIf="!hideSubEdits"
+                     [buttonlabel]="data.type"
+                     tooltip="Change Schema type"
+                     (typeSelected)="onChangeType($event)"></type-selector>
     </div>
-    <mat-icon (click)="onRemoveSchema({data: data})"
+    <mat-icon *ngIf="!hideSubEdits" (click)="onRemoveSchema({data: data})"
               class="clickable"
               matTooltip="Delete Schema"
               matTooltipShowDelay="500"

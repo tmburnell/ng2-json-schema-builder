@@ -5,6 +5,7 @@ import {Input, Output, EventEmitter, Component, DoCheck} from "@angular/core";
 })
 export class BaseSchemaComponent implements DoCheck {
   @Input() data: any;
+  @Input() hideSubEdits?: boolean;
   @Output() dataChange: EventEmitter<any> = new EventEmitter();
 
   @Output() changeType: EventEmitter<any> = new EventEmitter();

@@ -6,9 +6,12 @@ import {MatMenuModule, MatInputModule, MatButtonModule, MatIconModule, MatCheckb
         MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
+import {CodemirrorModule} from 'ng2-codemirror';
+
 import {AppComponent} from './app.component';
 import {Ng2JsonSchemaBuilderComponent} from './ng2-json-schema-builder/ng2-json-schema-builder.component';
-import {BaseSchemaComponent,LoadSchemaDirective,SchemaLoaderComponent,StandardInputComponent,TypeSelectorComponent} from './framework/core';
+import {BaseSchemaComponent,LoadSchemaDirective,SchemaLoaderComponent,StandardInputComponent,TypeSelectorComponent,
+        BaseDefinitionsComponent} from './framework/core';
 import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullSchemaComponent,
         NumberSchemaComponent,ObjectSchemaComponent,StringSchemaComponent, RefSchemaComponent} from './framework/schemas';
 
@@ -27,7 +30,8 @@ import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullS
     MatTooltipModule,
     BrowserAnimationsModule,
 
-    FlexLayoutModule
+    FlexLayoutModule,
+    CodemirrorModule
   ],
   declarations: [
     AppComponent,
@@ -44,7 +48,8 @@ import {ArraySchemaComponent,BooleanSchemaComponent,IntegerSchemaComponent,NullS
     BaseSchemaComponent,
     SchemaLoaderComponent,
     LoadSchemaDirective,
-    RefSchemaComponent
+    RefSchemaComponent,
+    BaseDefinitionsComponent
   ],
   entryComponents: [
     ArraySchemaComponent,
