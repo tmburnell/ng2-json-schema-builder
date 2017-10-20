@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --base-href='/ng2-json-schema-builder/'",
     "test": "ng test",
     "lint": "ng lint"
   },
