@@ -170,22 +170,14 @@ export class Schema {
       schema.$schema = 'http://json-schema.org/draft-06/schema#';
 
       if(data.definitions) {
-        schema.definitions = {
-          required: []
-        };
+        schema.definitions = {};
 
         for (var i = 0; i < data.definitions.length; i++) {
           let o = data.definitions[i];
           if (o && o.type) {
             var res = this.obj2JsonString(o);
             schema.definitions[o.key] = res;
-            if (o.required) {
-              schema.required.push(o.key);
-            }
           }
-        }
-        if (schema.definitions.required.length == 0) {
-          delete schema.definitions.required;
         }
       }
     }
@@ -317,7 +309,7 @@ export class Schema {
         ... {
           title: data.title,
           description: data.description,
-          default: data.defualt,
+          default: data.default,
           type: data.type
         }
       };
@@ -394,9 +386,9 @@ export class Schema {
       for (def in data.definitions) {
         subObj = this.JsonString2Obj(data.definitions[def], {key: def, parent_id: obj._id});
 
-        if(data.required && data.required.indexOf(def) != -1) {
-          subObj.required = true;
-        }
+        // if(data.required && data.required.indexOf(def) != -1) {
+        //   subObj.required = true;
+        // }
 
         obj.definitions.push(subObj);
       }
