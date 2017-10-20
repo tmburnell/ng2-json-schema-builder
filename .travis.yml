@@ -30,7 +30,7 @@ after_success:
   - git fetch origin
 
   # remove existing files
-  - rm --ignore-unmatch -r -f ' '
+  - rm -rf ./*
 
   # copy files from dist to gh-page branch
   - cp -R ../$SOURCE_DIR/dist/* ../$TARGET_DIR
@@ -38,6 +38,9 @@ after_success:
   # setup user
   - git config user.name "Travis CI"
   - git config user.email "travis@travis-ci.org"
+
+  # Add files
+  - git add *
 
   # commit changes
   - git commit -m "Travis Deploy, travis build $TRAVIS_BUILD_NUMBER"
