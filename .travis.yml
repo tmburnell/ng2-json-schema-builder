@@ -1,5 +1,50 @@
 language: node_js
 node_js:
-- stable
+  - stable
 
-script: npm run build
+#before_install:
+#  - git config --global user.email "travis@travis-ci.org"
+#  - git config --global user.name "Travis CI"
+script:
+  - npm run build
+after_success:
+  - SOURCE_BRANCH="master"
+  - TARGET_BRANCH="gh-pages"
+  - SOURCE_DIR=${PWD##*/}
+  - TARGET_DIR=$TARGET_BRANCH
+  - REPO=`git config remote.origin.url`
+  - SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+  - SHA=`git rev-parse --verify HEAD`
+
+  # Clone my repo one folder up for gh-pages version
+  - cd ..
+  - git clone $REPO $TARGET_DIR --branch $TARGET_BRANCH --single-branch --depth 1
+  - cd $TARGET_DIR
+
+  # set remote on gh-pages version
+
+  # clean (remove unchecked in files) gh-page version
+  - git clean -f -d
+
+  # fetch and Checkout gh-page branch
+  - git fetch origin
+
+  # remove existing files
+  - rm --ignore-unmatch -r -f ' '
+
+  # copy files from dist to gh-page branch
+  - cp -R ../$SOURCE_DIR/dist/* ../$TARGET_DIR
+
+  # setup user
+  - git config user.name "Travis CI"
+  - git config user.email "travis@travis-ci.org"
+
+  # commit changes
+  - git commit -m "Travis Deploy, travis build $TRAVIS_BUILD_NUMBER"
+
+  # push
+  - git push origin $TARGET_BRANCH
+
+#env:
+#  global:
+#    secure:
