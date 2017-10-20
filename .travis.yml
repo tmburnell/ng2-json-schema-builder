@@ -40,7 +40,7 @@ after_success:
   - git config user.email "travis@travis-ci.org"
 
   # Add files
-  - git add *
+  - git add .
 
   # commit changes
   - git commit -m "Travis Deploy, travis build $TRAVIS_BUILD_NUMBER"
