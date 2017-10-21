@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - stable
 
+deploy:
+  skip_cleanup: true
+  github_token: $github_token
+
 #before_install:
 #  - git config --global user.email "travis@travis-ci.org"
 #  - git config --global user.name "Travis CI"
@@ -48,6 +52,6 @@ after_success:
   # push
   - git push origin $TARGET_BRANCH
 
-#env:
-#  global:
-#    secure:
+env:
+  global:
+    secure: iEBAbSXNfid7E4eHyb3ej8yZOocrZQc5Xbmg/B4Ijo/yAySus+6xwDDiZ1h7bAf5c97yN+8G6bJMMUMGYwWZEAA8Uo4cAaO+mN0fSXW2C0xKnFFiTe3BH7tMvLjgB/HiwuHQ5feK4ctQm25xXuAZa+Miv4EDoa2vAVPMZhwEETHbiHuDZ0W6t8kO2y2g9T/lhqTjFbyiG8O7qd6Y1/RBVNwugLxxSmY/+znXHUYCOXy4qCux5fFWemzP8tCKgVaG3K3L5NQzVsXoJ3U4DBo6BvVpSjIL/ONbDCn2PvBz0FIBQjUPkpFDN5ax4FEubhDrRhJRlUxoOg9W8ZNQ0VqF5HmWDvLrEFGX7ot+Rkz8AFfxfxSriWb4VlYDFbdbyHNxl9ZdYRFQ9ktFMzM3wSjqRABwyRCZ6zNrO7vA8czIwZKa40DMV/oD5pJjhG4tfkAX3YZzi6+vjNp0ttduQz2jHcpakSow+VFRtURx49IBTE4ysIQ4xUPEOGjJ99KREoGBse2uFDBV1lE6spDmalDehB0iDTJBv451Y6Yl7z74V2n6g8EM20jH1cSbMGHn2OVmDCS0mSfcKYT/hjU3K1pr0UOijva3OpmrD5Ld0DZXyZkHT62GILuo2CiY4RnwvcUgWKFolRUAfSAZWjh9eB2NPGYN3Cuh6wiGLl84yiWNkyk=
