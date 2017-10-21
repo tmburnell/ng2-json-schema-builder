@@ -13,8 +13,6 @@ after_success:
   - SOURCE_DIR=${PWD##*/}
   - TARGET_DIR=$TARGET_BRANCH
   - REPO=`git config remote.origin.url`
-  - SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
-  - SHA=`git rev-parse --verify HEAD`
 
   # Clone my repo one folder up for gh-pages version
   - cd ..
@@ -53,4 +51,4 @@ after_success:
 
 env:
   global:
-    secure: iEBAbSXNfid7E4eHyb3ej8yZOocrZQc5Xbmg/B4Ijo/yAySus+6xwDDiZ1h7bAf5c97yN+8G6bJMMUMGYwWZEAA8Uo4cAaO+mN0fSXW2C0xKnFFiTe3BH7tMvLjgB/HiwuHQ5feK4ctQm25xXuAZa+Miv4EDoa2vAVPMZhwEETHbiHuDZ0W6t8kO2y2g9T/lhqTjFbyiG8O7qd6Y1/RBVNwugLxxSmY/+znXHUYCOXy4qCux5fFWemzP8tCKgVaG3K3L5NQzVsXoJ3U4DBo6BvVpSjIL/ONbDCn2PvBz0FIBQjUPkpFDN5ax4FEubhDrRhJRlUxoOg9W8ZNQ0VqF5HmWDvLrEFGX7ot+Rkz8AFfxfxSriWb4VlYDFbdbyHNxl9ZdYRFQ9ktFMzM3wSjqRABwyRCZ6zNrO7vA8czIwZKa40DMV/oD5pJjhG4tfkAX3YZzi6+vjNp0ttduQz2jHcpakSow+VFRtURx49IBTE4ysIQ4xUPEOGjJ99KREoGBse2uFDBV1lE6spDmalDehB0iDTJBv451Y6Yl7z74V2n6g8EM20jH1cSbMGHn2OVmDCS0mSfcKYT/hjU3K1pr0UOijva3OpmrD5Ld0DZXyZkHT62GILuo2CiY4RnwvcUgWKFolRUAfSAZWjh9eB2NPGYN3Cuh6wiGLl84yiWNkyk=
+    secure: khf1dnwQHhJJFq/susIJWCZzFwwfnfUmzrmzxpKphk8shPqqEOt7arYAzmpz7jnNeqc3d7vdcCk2+Q/bkXQX7TBMwSTLuqG3Bf+LRthViNu9sYQwZS4+n+GERYzYqqEid0rWItsE1gBZ/TTI5gI2Ev+hcpcMayFaW6m7DuWjQ11bkAIFmOmHqwOFxZWCQtsAaGhmk69hPyXYQMwJQSMrsFXn3yFcQsrTh2JX0LIzNNasIoBSWPpZslAdGMA/Kg/ZNk2LxnI/Hbnq+o6Gpf8c/jr8yCjP1DUD9Y71vZ1fxrgOzqZGyklmTpdUR2zFx1j1D4yPbnV70wLYmXFsHTaqA4vXuuuxf4NOK2Ol8E7kVbah5nNxa8FCTydpevnHmc78U4akr7op6nyRFLTTnnHsjO1VZ2ZJ2sMrefmKe/YoXrs5+UB7rXUWG65KQd4VT9Ofrpifa6rIkaDyTdjyi4+iO9hct23mRezdce+an0lGk8u48Z9u64YNsbvlVOY3xQv8sP2iTs8gVb0QnqhsNW+XiX6ofZ/U0lb6w0k/iKKgci9os0s4ehPcdro6zQugEYXSQ8cbEEiyQUhA1ptmiAl/3Wcx/LHYtDT3cd68RjQftWTRDX5CATifu/9tbxjicQU7+tHXrtrQq/im1ZkBwcfuNyxxIHxpQBFHJTUi1jEFvhY=
