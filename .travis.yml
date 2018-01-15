@@ -47,7 +47,7 @@ after_success:
   - git commit -m "Travis Deploy, travis build $TRAVIS_BUILD_NUMBER"
 
   # push
-  - git push origin $TARGET_BRANCH
+  - git push https://tmburnell:$GITHUB_API_KEY@github.com/tmburnell/ng2-json-schema-builder $TARGET_BRANCH
 
 env:
   global:
