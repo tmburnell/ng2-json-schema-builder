@@ -1,8 +1,8 @@
 @import './vars.scss';
 
-@import "~codemirror/lib/codemirror.css";
-@import '~codemirror/addon/lint/lint.css';
-@import '~codemirror/addon/fold/foldgutter.css';
+@import "codemirror/lib/codemirror.css";
+@import 'codemirror/addon/lint/lint.css';
+@import 'codemirror/addon/fold/foldgutter.css';
 
 @import '~@angular/material/theming';
 @include mat-core();
